@@ -143,7 +143,10 @@ public class Main
         else
             System.out.println("PROCESSOR IS WAITING NEW TASK");
     }
-    //
+
+    //////////////////////////////////////
+    //Generate new string to write to file
+    //////////////////////////////////////
     public static String generateOutputFileString(int time) throws Exception
     {
         String outputString = "";

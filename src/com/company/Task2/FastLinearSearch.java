@@ -6,13 +6,12 @@ import java.util.Arrays;
  * Created by ALEKSANDR NECHEUKHIN on 04.12.2016.
  */
 public class FastLinearSearch<Type> {
-    private Type[] Data;
+    private Comparable<Type>[] Data;
 
     /////////////
     //Constructor
     /////////////
-    public FastLinearSearch(final Type[] data) {
-        Data = (Type[]) new Object[data.length + 1];
+    public FastLinearSearch(final Comparable<Type>[] data) {
         Data = Arrays.copyOf(data, data.length + 1);
     }
 
@@ -20,7 +19,7 @@ public class FastLinearSearch<Type> {
     //Returns the index of the element that has been found
     // or emit exception
     //////////////////////////////////////////////////////
-    public int search(Type pattern) throws Exception {
+    public int search(Comparable<Type> pattern) throws Exception {
         Data[Data.length - 1] = pattern;
         int index = 0;
         while (true) {

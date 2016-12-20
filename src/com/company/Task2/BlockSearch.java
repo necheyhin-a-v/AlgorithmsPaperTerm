@@ -1,18 +1,16 @@
 package com.company.Task2;
 
-import java.util.Arrays;
-
 /**
  * Created by ALEKSANDR NECHEUKHIN on 04.12.2016.
  */
 public class BlockSearch<Type> {
-    Type[] Data;
+    Comparable<Type>[] Data;
     int SizeBlock;
 
     /////////////
     //Constructor
     /////////////
-    BlockSearch(Type[] data) {
+    BlockSearch(Comparable<Type>[] data) {
         this.SizeBlock = 10;
         this.Data = data;
     }
@@ -20,7 +18,7 @@ public class BlockSearch<Type> {
     /////////////
     //Constructor
     /////////////
-    BlockSearch(Type[] data, int sizeBlock) {
+    BlockSearch(Comparable<Type>[] data, int sizeBlock) {
         this.SizeBlock = sizeBlock;
         this.Data = data;
     }
@@ -32,7 +30,7 @@ public class BlockSearch<Type> {
             int endBlock = startBlock + this.SizeBlock;
             if (startBlock + this.SizeBlock >= this.Data.length)
                 return searchInBlock(pattern, startBlock, this.Data.length-1);
-            if (this.Data[startBlock + endBlock].toString().compareTo(pattern.toString()) >= 0)
+            if (this.Data[startBlock + endBlock].compareTo(pattern) >= 0)
                 return searchInBlock(pattern, startBlock, endBlock);
             startBlock += this.SizeBlock;
         }

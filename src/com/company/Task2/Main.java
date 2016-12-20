@@ -18,7 +18,6 @@ public class Main {
         String[] sortedStrings = strings.clone();
         Arrays.sort(sortedStrings);
 
-        Arrays.sort(strings);
         LinearSearch<String> linearSearch = new LinearSearch<>(strings);
         FastLinearSearch<String> fastLinearSearch = new FastLinearSearch<>(strings);
         SortedLinearSearch<String> sortedLinearSearch = new SortedLinearSearch<>(sortedStrings);
@@ -99,7 +98,7 @@ public class Main {
                 "возврат", "знак", "марка", "оплата", "входящий", "исходящий", "служба", "сторона", "вес", "пакет", "письмо", "посылка",
                 "штемпель", "класс", "вручение", "секограмма"};
         Random random = new Random(System.currentTimeMillis());
-        Thread.sleep((long)2);
+        Thread.sleep(1);
         int index = random.nextInt(arrayDomainInf.length-1);
         return arrayDomainInf[index];
     }
