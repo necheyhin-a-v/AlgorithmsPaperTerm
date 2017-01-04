@@ -10,12 +10,24 @@ import java.util.Random;
 public abstract class AbstractHash {
     private int TableSize;
     private Object[] Data;
-    private int Collisions;
+    private Integer[] ListCollisions;
+    private int CollisionCount;
 
     AbstractHash(int size) {
         this.TableSize = size;
         this.Data = new Object[size];
-        this.Collisions = 0;
+        this.CollisionCount = 0;
+        this.ListCollisions = new Integer[this.TableSize];
+        for (int i = 0; i < ListCollisions.length; i++)
+            ListCollisions[i] = 0;
+    }
+
+    public int getCollisionCount() {
+        return CollisionCount;
+    }
+
+    public Integer[] getCollisions() {
+        return ListCollisions;
     }
 
     ////////////////////////////////
@@ -45,7 +57,7 @@ public abstract class AbstractHash {
     ///////////////////////////
     final void add(Object object) {
         int index = doHash(object);//% TableSize;
-        index = index % TableSize;
+        index = Math.abs(index) % TableSize;
         //List was not created
         if (Data[index] == null) {
             List list = new ArrayList();
@@ -59,19 +71,20 @@ public abstract class AbstractHash {
                 return;
             //Add object to the end of list
             list.add(object);
-            Collisions++;
+            CollisionCount++;
+            ListCollisions[index]++;
         }
     }
 
     public int getCountCollisions() {
-        return Collisions;
+        return CollisionCount;
     }
 
     ////////////////////////////////////////
     //Returns object from hash table or null
     ////////////////////////////////////////
     final public Object search(Object object) {
-        int index = doHash(object) % TableSize;
+        int index = Math.abs(doHash(object)) % TableSize;
         if (Data[index] != null) {
             //transform data to list
             List list = (List) Data[index];
@@ -88,10 +101,10 @@ public abstract class AbstractHash {
     ///////////////////////////////
     final public void delete(Object object) {
         if (search(object) != null) {
-            int index = doHash(object) % TableSize;
+            int index = Math.abs(doHash(object)) % TableSize;
             List list = (List) this.Data[index];
             if (list.size() == 1)
-                this.Data[index] = null;       //Remove the whole list
+                this.Data[index] = null;                //Remove the whole list
             else
                 list.remove(list.indexOf(object));      //Remove only element
         }

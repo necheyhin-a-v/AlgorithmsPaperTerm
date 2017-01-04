@@ -12,12 +12,24 @@ public class ShellSort<Type> {
     private List<Integer> Incrementation;
 
     //Using default Sedjvik's series
-    ShellSort(final Comparable<Type>[] array, SortType type) {
+    public ShellSort(final Comparable<Type>[] array, SortType type) {
         this.Data = array;
         this.SortType = type;
         Incrementation = new ArrayList<>();
-        calculateSeries();
+        calculateSedjvikSeries();
     }
+
+    //Using another series
+    public ShellSort(final Comparable<Type>[] array, SortType type, boolean useMySeries) {
+        this.Data = array;
+        this.SortType = type;
+        Incrementation = new ArrayList<>();
+        if (useMySeries)
+            calculateMySeries();
+        else
+            calculateSedjvikSeries();
+    }
+
 
     public Type[] sort() throws Exception {
         if (SortType == SortType.ASCENDING)
@@ -78,7 +90,7 @@ public class ShellSort<Type> {
     /////////////////////////////
     //Calculate series by Sedjvik
     /////////////////////////////
-    private void calculateSeries() {
+    private void calculateSedjvikSeries() {
         Incrementation.add(1);
         int i = 1;
         do {
@@ -90,4 +102,18 @@ public class ShellSort<Type> {
 
         } while (Incrementation.get(i - 1) < this.Data.length && 3 * Incrementation.get(i - 1) < Data.length);
     }
+
+    /////////////////////////////////////////
+    //Calculate series using my own algorithm
+    /////////////////////////////////////////
+    private void calculateMySeries() {
+        Incrementation.add(1);
+        int i = 1;
+        do {
+            Incrementation.add((int) Math.pow(i + 1, Incrementation.get(i - 1)));
+            i++;
+
+        } while (Incrementation.get(i - 1) < this.Data.length);
+    }
+
 }

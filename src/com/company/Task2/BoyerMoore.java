@@ -22,6 +22,7 @@ public class BoyerMoore {
         this.Data = text;
     }
 
+
     ///////////////////////////
     //Searching pattern in text
     ///////////////////////////

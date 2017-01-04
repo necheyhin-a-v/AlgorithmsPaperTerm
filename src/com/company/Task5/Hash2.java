@@ -16,9 +16,9 @@ public class Hash2 extends AbstractHash {
         //Generate number from object
         double numberFromObject = 0;
         for (int i = 0; i < objectString.length(); i++) {
-            numberFromObject %= objectString.charAt(i);
-            numberFromObject += objectString.charAt(i) * SimpleNumber;
+            numberFromObject += objectString.charAt(i) * i;
         }
-        return (int) numberFromObject % SimpleNumber;
+        //numberFromObject *= SimpleNumber;
+        return (int) numberFromObject * SimpleNumber;
     }
 }
