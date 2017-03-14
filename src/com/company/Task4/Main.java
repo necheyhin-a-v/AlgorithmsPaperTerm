@@ -6,7 +6,7 @@ package com.company.Task4;
 public class Main {
     public static void main(String[] argv) throws Exception {
         //Create tree
-        BTree bTree = new BTree(10); //Create 2-3-4-... tree
+        BTree bTree = new BTree(2); //Create 2-3-4-... tree
 
         bTree.add(1);
         bTree.add(3);
@@ -41,7 +41,7 @@ public class Main {
 
         System.out.println("INITIAL");
         bTree.printByLayer();
-
+/*
         bTree.delete(8);
         System.out.println("REMOVED 8");
         bTree.printByLayer();
@@ -99,6 +99,6 @@ public class Main {
         bTree.delete(2);
         System.out.println("REMOVED 2");
         bTree.printByLayer();
-
+*/
     }
 }
